@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,11 @@ Route::get('/', function (){
     echo "LUL";
 });
 
+
+//Route::get('/region/{id}', [RegionController::class, 'index'])->name('region.index');
+
+Route::resource('region', RegionController::class)->only(['show'])
+    ->name('get', 'region.show');
 
 
 
