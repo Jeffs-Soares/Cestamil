@@ -25,7 +25,7 @@ class CreateBudgetTable extends Migration
             $table->float('total_value')->nullable(false);
             $table->float('pay')->nullable(false);
             $table->float('remnant')->nullable(false);
-            $table->timestamps();
+
 
             $table->foreign('product')->references('id')
                 ->on('product')

@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Region;
+use App\Http\Model\Region;
 use Illuminate\Http\Request;
 
 class RegionController extends Controller
 {
 
-    public function index(int $id)
+    public function index()
     {
-        $region = Region::find($id);
-        dd($region);
+
     }
 
 
@@ -29,7 +28,7 @@ class RegionController extends Controller
 
     public function show(Region $region)
     {
-
+        dd($region);
     }
 
 

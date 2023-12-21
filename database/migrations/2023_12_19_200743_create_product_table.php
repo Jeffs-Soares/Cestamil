@@ -18,7 +18,7 @@ class CreateProductTable extends Migration
             $table->string('name', 128)->nullable(false);
             $table->text('description')->nullable(true);
             $table->float('value')->nullable(false);
-            $table->timestamps();
+
 
         });
     }
