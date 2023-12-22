@@ -17,19 +17,22 @@ class RegionController extends Controller
 
     public function create()
     {
-
+        return view('region.create');
     }
 
 
     public function store(Request $request)
     {
+        $region = Region::create($request->all());
+
+        return redirect(route('region.index'));
 
     }
 
 
     public function show(Region $region)
     {
-        dd($region);
+
     }
 
 

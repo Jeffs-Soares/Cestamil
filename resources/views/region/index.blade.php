@@ -9,15 +9,20 @@
 </head>
 <body>
 
-<h1> Region Page </h1>
+<h1> Index Region Page </h1>
 
 <ul>
 
     @foreach($regions as $region)
-        <li> Nome: {{$region->name }}</li>
+        <li> Região: {{$region->name }}</li>
     @endforeach
 
 </ul>
+
+<a href="{{route('region.create')}}"> Cadastrar uma região </a>
+<br>
+<br>
+<a href="/"> Home </a>
 
 </body>
 </html>
