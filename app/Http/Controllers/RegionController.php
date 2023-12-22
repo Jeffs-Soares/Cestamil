@@ -32,7 +32,7 @@ class RegionController extends Controller
 
     public function show(Region $region)
     {
-
+        return view('region.show')->with('region', $region);
     }
 
 
