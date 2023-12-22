@@ -23,7 +23,10 @@ class RegionController extends Controller
 
     public function store(Request $request)
     {
-        $region = Region::create($request->all());
+        //$region = Region::create($request->all());
+        $region = new Region();
+        $region->fill($request->all());
+        $region->save();
 
         return redirect(route('region.index'));
 

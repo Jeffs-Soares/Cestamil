@@ -25,8 +25,8 @@
 
 </form>
 
-
-
+<br>
+<a href="{{route('region.index')}}"> Cancelar </a>
 
 </body>
 </html>

@@ -27,7 +27,7 @@
 
 <br>
 <br>
-<a href="{{route('region.index')}}"> Regions </a>
+<a href="{{route('region.index')}}"> Voltar </a>
 
 
 </body>
