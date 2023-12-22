@@ -38,12 +38,15 @@ class RegionController extends Controller
 
     public function edit(Region $region)
     {
-
+        return view('region.edit')->with('region', $region);
     }
 
 
     public function update(Request $request, Region $region)
     {
+        $region->fill($request->all());
+        $region->save();
+        return redirect(route('region.index'));
 
     }
 

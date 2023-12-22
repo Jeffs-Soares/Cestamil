@@ -14,7 +14,12 @@
 <ul>
 
     @foreach($regions as $region)
-        <li> Região:  <a href="{{route('region.show', $region->id)}}">{{$region->name }}</a>  </li>
+        <li>
+
+            Região:  <a href="{{route('region.show', $region->id)}}">{{$region->name }}</a>
+
+            <a href="{{route('region.edit', $region->id)}}"> Edit </a>
+        </li>
     @endforeach
 
 </ul>

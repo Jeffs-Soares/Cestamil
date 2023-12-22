@@ -22,7 +22,7 @@ Route::get('/', function (){
 //Route::get('/region/{id}', [RegionController::class, 'index'])->name('region.index');
 
 Route::resource('region', RegionController::class)
-    ->only(['index', 'create', 'store', 'show']);
+    ->except(['destroy']);
 
 
 
