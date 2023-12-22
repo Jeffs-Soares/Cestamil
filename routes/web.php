@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (){
-    echo "LUL";
+    return view('login');
 });
 
 
 //Route::get('/region/{id}', [RegionController::class, 'index'])->name('region.index');
 
-Route::resource('region', RegionController::class)->only(['show'])
-    ->name('get', 'region.show');
+Route::resource('region', RegionController::class)->only(['index'])
+    ->name('get', 'region.index');
 
 
 

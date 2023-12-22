@@ -10,7 +10,8 @@ class RegionController extends Controller
 
     public function index()
     {
-
+      $regions = Region::all();
+      return view('region.index')->with('regions', $regions);
     }
 
 
