@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RegionController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,8 @@ Route::get('/', function (){
 //Route::get('/region/{id}', [RegionController::class, 'index'])->name('region.index');
 
 Route::resource('region', RegionController::class);
+
+Route::resource('product', ProductController::class);
 
 
 
