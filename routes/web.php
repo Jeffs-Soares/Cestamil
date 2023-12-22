@@ -21,8 +21,7 @@ Route::get('/', function (){
 
 //Route::get('/region/{id}', [RegionController::class, 'index'])->name('region.index');
 
-Route::resource('region', RegionController::class)
-    ->except(['destroy']);
+Route::resource('region', RegionController::class);
 
 
 

@@ -19,6 +19,13 @@
             Região:  <a href="{{route('region.show', $region->id)}}">{{$region->name }}</a>
 
             <a href="{{route('region.edit', $region->id)}}"> Edit </a>
+
+            <form action="{{route('region.destroy', $region->id)}}" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit"> Delete </button>
+            </form>
+
         </li>
     @endforeach
 

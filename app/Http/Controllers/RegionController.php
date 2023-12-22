@@ -47,11 +47,11 @@ class RegionController extends Controller
         $region->fill($request->all());
         $region->save();
         return redirect(route('region.index'));
-
     }
 
     public function destroy(Region $region)
     {
-
+        $region->delete();
+        return redirect( route('region.index'));
     }
 }
