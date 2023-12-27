@@ -11,13 +11,14 @@ class Region extends Model
     protected $table = 'region';
     public $timestamps = false;
     protected $primaryKey = 'id';
-
-    /**
-     * @var array
-     */
     protected $fillable = [
         'name',
         'seller'
     ];
+
+    public function belongsBudget()
+    {
+        return $this->belongsTo(Budget::class);
+    }
 
 }

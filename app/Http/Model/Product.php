@@ -16,4 +16,9 @@ class Product extends Model
         'description',
         'value'
     ];
+
+    public function belongsBudget()
+    {
+        return $this->belongsTo(Budget::class);
+    }
 }
