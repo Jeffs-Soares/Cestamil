@@ -27,7 +27,7 @@ Route::resource('region', RegionController::class);
 
 Route::resource('product', ProductController::class);
 
-Route::resource('budget', BudgetController::class)->only(['index']);
+Route::resource('budget', BudgetController::class)->only(['index', 'create', 'store']);
 
 
 
