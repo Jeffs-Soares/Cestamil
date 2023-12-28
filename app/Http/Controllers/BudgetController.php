@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Model\Budget;
 use App\Http\Model\Product;
 use App\Http\Model\Region;
+use Faker\Extension\Helper;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+use PHPUnit\TextUI\Help;
 
 class BudgetController extends Controller
 {
@@ -29,7 +32,6 @@ class BudgetController extends Controller
     {
         $product = Product::find($request->product);
 
-
         $budgetRequest = $request->all() + [
                 'total_value' => ($product->value * $request->input('quantity')) + $request->input('additional'),
                 'pay' => 0,
@@ -47,7 +49,7 @@ class BudgetController extends Controller
 
     public function show(Budget $budget)
     {
-
+        return view('budget.show')->with('budget', $budget);
     }
 
 

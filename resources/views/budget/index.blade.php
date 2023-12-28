@@ -17,11 +17,7 @@
 
         <li>
             <h3> Client: {{$budget->client}}</h3>
-            <p> Budget Number: {{ $budget->id }} </p>
-            <p> Product: {{$budget->hasProduct->name}}</p>
-            <p> Budget amount: {{$budget->total_value}}</p>
-            <p> Region: {{$budget->hasRegion->name}}</p>
-
+           <a href="{{ route('budget.show', $budget->id)}}"> <p> Budget Number: {{ $budget->id }} </p> </a>
         </li>
 
 
