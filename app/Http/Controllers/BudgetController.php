@@ -7,7 +7,7 @@ use App\Http\Model\Product;
 use App\Http\Model\Region;
 use Faker\Extension\Helper;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
+use Illuminate\Routing;
 use PHPUnit\TextUI\Help;
 
 class BudgetController extends Controller
@@ -16,7 +16,8 @@ class BudgetController extends Controller
     public function index()
     {
         $budgets = Budget::all();
-        return view('budget.index')->with('budgets', $budgets);
+        return view('budget.index')
+            ->with('budgets', $budgets);
     }
 
 
@@ -24,7 +25,9 @@ class BudgetController extends Controller
     {
         $products = Product::all();
         $regions = Region::all();
-        return view('budget.create')->with('products', $products)->with('regions', $regions);
+        return view('budget.create')
+            ->with('products', $products)
+            ->with('regions', $regions);
     }
 
 
@@ -49,24 +52,33 @@ class BudgetController extends Controller
 
     public function show(Budget $budget)
     {
-        return view('budget.show')->with('budget', $budget);
+        return view('budget.show')
+            ->with('budget', $budget);
     }
 
 
     public function edit(Budget $budget)
     {
+        $products = Product::all();
+        $regions = Region::all();
 
+        return view('budget.edit')
+            ->with('budget', $budget)
+            ->with('products', $products)
+            ->with('regions', $regions);
     }
-
 
     public function update(Request $request, Budget $budget)
     {
+        $budget->fill($request->all());
+        $budget->save();
 
+        return redirect(route('budget.index'));
     }
-
 
     public function destroy(Budget $budget)
     {
-
+        $budget->delete();
+        return redirect(route('budget.index'));
     }
 }
