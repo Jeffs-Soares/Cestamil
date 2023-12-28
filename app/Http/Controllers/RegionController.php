@@ -11,7 +11,8 @@ class RegionController extends Controller
     public function index()
     {
       $regions = Region::all();
-      return view('region.index')->with('regions', $regions);
+      return view('region.index')
+          ->with('regions', $regions);
     }
 
 
@@ -35,13 +36,15 @@ class RegionController extends Controller
 
     public function show(Region $region)
     {
-        return view('region.show')->with('region', $region);
+        return view('region.show')
+            ->with('region', $region);
     }
 
 
     public function edit(Region $region)
     {
-        return view('region.edit')->with('region', $region);
+        return view('region.edit')
+            ->with('region', $region);
     }
 
 
@@ -55,6 +58,6 @@ class RegionController extends Controller
     public function destroy(Region $region)
     {
         $region->delete();
-        return redirect( route('region.index'));
+        return redirect(route('region.index'));
     }
 }

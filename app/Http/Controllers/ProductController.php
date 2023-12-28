@@ -11,7 +11,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('product.index')->with('products', $products);
+        return view('product.index')
+            ->with('products', $products);
     }
 
 
@@ -34,13 +35,15 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('product.show')->with('product', $product);
+        return view('product.show')
+            ->with('product', $product);
     }
 
 
     public function edit(Product $product)
     {
-        return view('product.edit')->with('product', $product);
+        return view('product.edit')
+            ->with('product', $product);
     }
 
 
@@ -55,6 +58,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect( route('product.index'));
+        return redirect(route('product.index'));
     }
 }
