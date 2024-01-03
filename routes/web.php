@@ -17,22 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function(){
-    return redirect('/home');
+    return view('login');
 });
-
-
-Route::get('/home', function (){
-    return view('home');
-});
-
-
-//Route::get('/region/{id}', [RegionController::class, 'index'])->name('region.index');
 
 Route::resource('region', RegionController::class);
 
 Route::resource('product', ProductController::class);
 
 Route::resource('budget', BudgetController::class);
-
-
-

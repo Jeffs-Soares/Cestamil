@@ -38,8 +38,8 @@ class BudgetController extends Controller
                 'pay' => 0,
                 'remnant' => 0
             ];
+            
         $budget = new Budget();
-
         $budget->fill($budgetRequest);
         $budget->save();
 
