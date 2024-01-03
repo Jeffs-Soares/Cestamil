@@ -68,6 +68,8 @@ class BudgetController extends Controller
 
     public function update(Request $request, Budget $budget)
     {
+        //precisa atualizar o valor total também
+        // quando atualiza no form, não tá atualizando o valor total da soma no banco
         $budget->fill($request->all());
         $budget->save();
 
