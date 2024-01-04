@@ -16,6 +16,7 @@ class BudgetController extends Controller
     public function index()
     {
         $budgets = Budget::all();
+        
         return view('budget.index')
             ->with('budgets', $budgets);
     }
@@ -25,6 +26,7 @@ class BudgetController extends Controller
     {
         $products = Product::all();
         $regions = Region::all();
+        
         return view('budget.create')
             ->with('products', $products)
             ->with('regions', $regions);
@@ -33,7 +35,7 @@ class BudgetController extends Controller
 
     public function store(Request $request, Budget $budget)
     {
-        $budgetUpdated = $this->calcTotalValue($request, $budget);
+        $budgetUpdated = $this->calcTotalValue('post',$request, $budget);
    
         $budget->fill($budgetUpdated);
         $budget->save();
@@ -43,7 +45,6 @@ class BudgetController extends Controller
     }
 
    
-
     public function show(Budget $budget)
     {
         return view('budget.show')
@@ -64,10 +65,8 @@ class BudgetController extends Controller
 
     public function update(Request $request, Budget $budget)
     {
-        $product = Product::find($request->product);
-
         $budget->fill($request->all());
-        $budget->total_value = ($product->value * $request->quantity ) + $request->additional;
+        $budget->total_value = $this->calcTotalValue('put', $request, $budget);
         $budget->save();
 
         return redirect(route('budget.index'));
