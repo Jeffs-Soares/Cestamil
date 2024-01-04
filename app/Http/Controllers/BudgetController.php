@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Model\Budget;
 use App\Http\Model\Product;
 use App\Http\Model\Region;
+use App\Traits\BudgetTrait;
 use Illuminate\Http\Request;
 
 
 class BudgetController extends Controller
 {
+    use BudgetTrait;
 
     public function index()
     {
@@ -28,8 +30,6 @@ class BudgetController extends Controller
             ->with('regions', $regions);
     }
 
-
-     
 
     public function store(Request $request, Budget $budget)
     {
@@ -67,9 +67,7 @@ class BudgetController extends Controller
         $product = Product::find($request->product);
 
         $budget->fill($request->all());
-
         $budget->total_value = ($product->value * $request->quantity ) + $request->additional;
-
         $budget->save();
 
         return redirect(route('budget.index'));
@@ -80,24 +78,5 @@ class BudgetController extends Controller
         $budget->delete();
         return redirect(route('budget.index'));
     }
-
-
-
-    private function calcTotalValue(Request $request, Budget $budget){
-
-        $product = Product::find($request->product);
-
-        $budgetRequest = $request->all() + [
-                'total_value' => ($product->value * $request->quantity ) + $request->additional,
-                'pay' => 0,
-                'remnant' => 0
-            ];
-
-            $budget = $budgetRequest;
-
-            return $budget;
-
-    }
-
 
 }
