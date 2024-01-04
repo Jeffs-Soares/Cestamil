@@ -38,7 +38,7 @@ class BudgetController extends Controller
                 'pay' => 0,
                 'remnant' => 0
             ];
-            
+
         $budget = new Budget();
         $budget->fill($budgetRequest);
         $budget->save();
@@ -68,9 +68,12 @@ class BudgetController extends Controller
 
     public function update(Request $request, Budget $budget)
     {
-        //precisa atualizar o valor total também
-        // quando atualiza no form, não tá atualizando o valor total da soma no banco
+        $product = Product::find($request->product);
+
         $budget->fill($request->all());
+
+        $budget->total_value = ($product->value * $request->quantity ) + $request->additional;
+
         $budget->save();
 
         return redirect(route('budget.index'));
