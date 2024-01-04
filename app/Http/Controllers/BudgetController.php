@@ -29,24 +29,20 @@ class BudgetController extends Controller
     }
 
 
-    public function store(Request $request)
+     
+
+    public function store(Request $request, Budget $budget)
     {
-        $product = Product::find($request->product);
-
-        $budgetRequest = $request->all() + [
-                'total_value' => ($product->value * $request->input('quantity')) + $request->input('additional'),
-                'pay' => 0,
-                'remnant' => 0
-            ];
-
-        $budget = new Budget();
-        $budget->fill($budgetRequest);
+        $budgetUpdated = $this->calcTotalValue($request, $budget);
+   
+        $budget->fill($budgetUpdated);
         $budget->save();
 
         return redirect(route('budget.index'));
 
     }
 
+   
 
     public function show(Budget $budget)
     {
@@ -84,4 +80,24 @@ class BudgetController extends Controller
         $budget->delete();
         return redirect(route('budget.index'));
     }
+
+
+
+    private function calcTotalValue(Request $request, Budget $budget){
+
+        $product = Product::find($request->product);
+
+        $budgetRequest = $request->all() + [
+                'total_value' => ($product->value * $request->quantity ) + $request->additional,
+                'pay' => 0,
+                'remnant' => 0
+            ];
+
+            $budget = $budgetRequest;
+
+            return $budget;
+
+    }
+
+
 }
