@@ -14,7 +14,7 @@
 <p> id: {{$budget->id}}</p>
 <p> Client: {{$budget->client}}</p>
 <p> Date: {{$budget->date}}</p>
-<p> Product: {{$budget->hasProduct->name}}</p>
+<p> Product: {{$budget->hasProduct->name ." - " .  "R$ " . $budget->hasProduct->value}}</p>
 <p> Additional: {{$budget->additional}}</p>
 <p> Additional Products: {{$budget->additional_products}}</p>
 <p> Region: {{$budget->hasRegion->name}}</p>
@@ -25,8 +25,6 @@
 <p> Remnant: {{$budget->remnant}}</p>
 
 <a href="{{route('budget.index')}}"> Voltar </a>
-
-
 
 </body>
 </html>
