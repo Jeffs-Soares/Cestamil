@@ -8,7 +8,6 @@ use App\Http\Model\Region;
 use App\Traits\BudgetTrait;
 use Illuminate\Http\Request;
 
-
 class BudgetController extends Controller
 {
     use BudgetTrait;
@@ -77,5 +76,10 @@ class BudgetController extends Controller
         $budget->delete();
         return redirect(route('budget.index'));
     }
+
+    function payCreate(Budget $budget) {
+        dd($budget);
+    }
+
 
 }
