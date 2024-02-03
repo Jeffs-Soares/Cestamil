@@ -27,7 +27,7 @@
                 <button type="submit"> Delete </button>
             </form>
 
-            <a href={{route('pay', $budget->id)}}> <button> Pay </button> </a>
+            <a href={{route('payCreate', $budget->id)}}> <button> Pay </button> </a>
 
         </li>
 

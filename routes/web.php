@@ -27,5 +27,7 @@ Route::resource('product', ProductController::class);
 
 Route::resource('budget', BudgetController::class);
 
-Route::get('/budget/{budget}/pay', [BudgetController::class, 'payCreate']) -> name('pay');
+Route::get('/budget/{budget}/pay', [BudgetController::class, 'payCreate']) -> name('payCreate');
+
+Route::put('/budget/{budget}/pay', [BudgetController::class, 'payStore']) -> name('payStore');
 

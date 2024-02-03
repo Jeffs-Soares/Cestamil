@@ -78,7 +78,18 @@ class BudgetController extends Controller
     }
 
     function payCreate(Budget $budget) {
-        dd($budget);
+        return view('budget.pay') -> with('budget',$budget);
+    }
+
+    function payStore( Request $request, Budget $budget) {
+        
+        $pay = $request->get('pay');
+
+        $budget->pay = $pay;
+
+        $budget->save();
+
+        return redirect(route('budget.index')); 
     }
 
 
