@@ -21,11 +21,11 @@
 
             <a href={{route('budget.edit', $budget->id)}}> Edit </a>
 
-            <form action={{route('budget.destroy', $budget->id)}} method="post">
+            {{-- <form action={{route('budget.destroy', $budget->id)}} method="post">
                 @csrf
                 @method('delete')
                 <button type="submit"> Delete </button>
-            </form>
+            </form> --}}
 
             <a href={{route('payCreate', $budget->id)}}> <button> Pay </button> </a>
 

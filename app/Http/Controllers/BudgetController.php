@@ -15,7 +15,7 @@ class BudgetController extends Controller
     public function index()
     {
         $budgets = Budget::all();
-        
+
         return view('budget.index')
             ->with('budgets', $budgets);
     }
@@ -25,7 +25,7 @@ class BudgetController extends Controller
     {
         $products = Product::all();
         $regions = Region::all();
-        
+
         return view('budget.create')
             ->with('products', $products)
             ->with('regions', $regions);
@@ -34,16 +34,15 @@ class BudgetController extends Controller
 
     public function store(Request $request, Budget $budget)
     {
-        $budgetUpdated = $this->calcTotalValue('post',$request, $budget);
-   
+        $budgetUpdated = $this->calcTotalValue('post', $request, $budget);
+
         $budget->fill($budgetUpdated);
         $budget->save();
 
         return redirect(route('budget.index'));
-
     }
 
-   
+
     public function show(Budget $budget)
     {
         return view('budget.show')
@@ -77,20 +76,33 @@ class BudgetController extends Controller
         return redirect(route('budget.index'));
     }
 
-    function payCreate(Budget $budget) {
-        return view('budget.pay') -> with('budget',$budget);
+    function payCreate(Budget $budget)
+    {
+        return view('budget.pay')->with('budget', $budget);
     }
 
-    function payStore( Request $request, Budget $budget) {
-        
-        $pay = $request->get('pay');
+    function payStore(Request $request, Budget $budget)
+    {
 
-        $budget->pay = $pay;
+        $payRequest = $request->get('pay');
 
-        //$budget->save();
+        if ($payRequest > $budget->total_value) {
 
-        return redirect(route('budget.index')); 
+            return redirect(route('payCreate', $budget));
+        } else if ($payRequest > $budget->remnant) {
+
+            return redirect(route('payCreate', $budget));
+        }
+
+
+        if ($budget->pay + $payRequest > $budget->total_value) {
+            return redirect(route('payCreate', $budget));
+        }
+
+        $budget->pay += $payRequest;
+        $budget->remnant = $budget->total_value - $budget->pay;
+        $budget->save();
+
+        return redirect(route('budget.index'));
     }
-
-
 }
