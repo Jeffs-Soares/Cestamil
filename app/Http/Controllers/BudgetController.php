@@ -87,7 +87,7 @@ class BudgetController extends Controller
 
         $budget->pay = $pay;
 
-        $budget->save();
+        //$budget->save();
 
         return redirect(route('budget.index')); 
     }

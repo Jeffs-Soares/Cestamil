@@ -26,8 +26,10 @@ trait BudgetTrait
             $budgetRequest = $request->all() + [
                 'total_value' => ($product->value * $request->quantity) + $request->additional,
                 'pay' => 0,
-                'remnant' => 0
+                'remnant' => ($product->value * $request->quantity) + $request->additional
             ];
+
+         
 
             $budget = $budgetRequest;
 
