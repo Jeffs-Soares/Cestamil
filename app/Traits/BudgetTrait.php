@@ -29,8 +29,6 @@ trait BudgetTrait
                 'remnant' => ($product->value * $request->quantity) + $request->additional
             ];
 
-         
-
             $budget = $budgetRequest;
 
             return $budget;
