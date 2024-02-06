@@ -63,8 +63,52 @@ class BudgetController extends Controller
 
     public function update(Request $request, Budget $budget)
     {
+        /**
+         * Mapeando Casos possíveis
+         * 
+         * Campos: Valor Total, Pago, Restante, Adicional
+         * 
+         * Update -- Form - PUT
+         * 
+         * 0 - Se o adicional mudou, se sim entrar nas condições
+         * 
+         * Se mudou, foi pra mais ou pra menos?
+         * 
+         * 
+         * 1 - Valor total 100%, Pago 0%, Restante 100%, Adicional 0
+         * 
+         * 2 - Valor Total 50%, Pago 50%, Restante 50%, Adicional 0
+         * 
+         * 3 - Valor Total 0%, Pago 100%, Restante 0%, Adicional 0
+         * 
+         * 4 - Valor total 100%, Pago 0%, Restante 100%, Adicional 1
+         * 
+         * 5 - Valor Total 50%, Pago 50%, Restante 50%, Adicional 1
+         * 
+         * 6 - Valor Total 0%, Pago 100%, Restante 0%, Adicional 1
+         * 
+         */
+
+
+        //dd($request->all(), $budget->getAttributes());
+
+        //TODO: Verifica se o valor inicial é igual ou valor mandado
+        if($request->additional == $budget->additional){
+
+            $budget->fill($request->all());
+            $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+            $budget->remnant = $budget->total_value - $budget->pay; 
+            $budget->save();
+            return redirect(route('budget.index'));
+           
+        };
+        
+        
+        dd('STOP BEFORE SAVE!! ');
+
         $budget->fill($request->all());
         $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+    
         $budget->save();
 
         return redirect(route('budget.index'));
