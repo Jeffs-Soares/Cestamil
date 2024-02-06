@@ -103,15 +103,45 @@ class BudgetController extends Controller
            
         };
         
-        
-        dd('STOP BEFORE SAVE!! ');
 
-        $budget->fill($request->all());
-        $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+        //TODO: Foi acréscimo ou redução
+
+        if($request->additional > $budget->additional  ){
+            //TODO: Acréscimo
+
+            $budget->fill($request->all());
+            $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+            $budget->remnant = $budget->total_value - $budget->pay;
+            $budget->save();
+            return redirect(route('budget.index'));
+            
+
+        };
+
+        if($request->additional < $budget->additional ){
+            //TODO: Decréscimo
+
+            $budget->fill($request->all());
+            $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+            $budget->remnant = $budget->total_value - $budget->pay;
+
+            if($budget->remnant < 0){
+
+                return redirect(route('budget.edit', $budget));
+            };
+
+            $budget->save();
+            return redirect(route('budget.index'));
+           
+        };
+
+        // $budget->fill($request->all());
+        // $budget->total_value = $this->calcTotalValue('put', $request, $budget);
     
-        $budget->save();
+        // $budget->save();
 
         return redirect(route('budget.index'));
+        
     }
 
     public function destroy(Budget $budget)
