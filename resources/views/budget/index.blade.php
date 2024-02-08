@@ -25,7 +25,7 @@
                 @csrf
                 @method('delete')
                 <button type="submit"> Delete </button>
-            </form> 
+            </form>
 
             <a href={{route('payCreate', $budget->id)}}> <button> Pay </button> </a>
 
