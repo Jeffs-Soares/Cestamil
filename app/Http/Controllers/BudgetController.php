@@ -63,11 +63,47 @@ class BudgetController extends Controller
 
     public function update(Request $request, Budget $budget)
     {
-        $budget->fill($request->all());
-        $budget->total_value = $this->calcTotalValue('put', $request, $budget);
-        $budget->save();
+      
+        if($request->additional == $budget->additional){
+
+            $budget->fill($request->all());
+            $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+            $budget->remnant = $budget->total_value - $budget->pay; 
+            $budget->save();
+            
+            return redirect(route('budget.index'));
+           
+        };
+
+        if($request->additional > $budget->additional  ){
+          
+            $budget->fill($request->all());
+            $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+            $budget->remnant = $budget->total_value - $budget->pay;
+            $budget->save();
+
+            return redirect(route('budget.index'));     
+
+        };
+
+        if($request->additional < $budget->additional ){
+
+            $budget->fill($request->all());
+            $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+            $budget->remnant = $budget->total_value - $budget->pay;
+
+            if($budget->remnant < 0){
+
+                return redirect(route('budget.edit', $budget));
+            };
+
+            $budget->save();
+            return redirect(route('budget.index'));
+           
+        };
 
         return redirect(route('budget.index'));
+        
     }
 
     public function destroy(Budget $budget)
