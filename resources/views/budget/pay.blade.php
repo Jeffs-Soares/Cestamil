@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pay Page </title>
-</head>
-<body>
+<x-template>
     <h1> Pay </h1>
 
     <p> id: {{$budget->id}}</p>
@@ -33,6 +25,4 @@
 
 </form>
 
-   
-</body>
-</html>
+</x-template>

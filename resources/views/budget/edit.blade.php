@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<x-template>
 
 <h1> Edit Budget Page </h1>
 
@@ -86,15 +77,6 @@
     <br>
     <a href="{{route('budget.index')}}"> Voltar </a>
 
-
-
 </form>
 
-
-
-
-
-
-
-</body>
-</html>
+</x-template>
