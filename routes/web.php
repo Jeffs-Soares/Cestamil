@@ -18,8 +18,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('login');
+    //TODO: In future, when i use breeze i change this
+    // return view('login');
+    return redirect(route('dashboard'));
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 
 Route::resource('region', RegionController::class);
 
@@ -27,7 +34,6 @@ Route::resource('product', ProductController::class);
 
 Route::resource('budget', BudgetController::class);
 
-Route::get('/budget/{budget}/pay', [BudgetController::class, 'payCreate']) -> name('payCreate');
+Route::get('/budget/{budget}/pay', [BudgetController::class, 'payCreate'])->name('payCreate');
 
-Route::put('/budget/{budget}/pay', [BudgetController::class, 'payStore']) -> name('payStore');
-
+Route::put('/budget/{budget}/pay', [BudgetController::class, 'payStore'])->name('payStore');

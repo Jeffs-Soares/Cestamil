@@ -1,11 +1,6 @@
 <x-template>
 
-    <a href="{{ route('budget.index') }}">Budgets</a>
-    <br>
-    <br>
-    <a href="{{ route('region.index') }}">Regions</a>
-    <br>
-    <br>
-    <a href="{{ route('product.index') }}">Products</a>
+
+    <h1 class="text-4xl font-bold underline"> Login Page </h1>
 
 </x-template>
