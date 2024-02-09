@@ -1,27 +1,26 @@
-
 <x-template>
 
-<h1> Create Product Page </h1>
+    <h1> Create Product Page </h1>
 
-<form action="{{ route('product.store') }}" method="post">
-    @csrf
-    @method('post')
+    <form action="{{ route('product.store') }}" method="post">
+        @csrf
+        @method('post')
 
-    <label for="name"> Nome do produto </label>
-    <input type="text" id="name" name="name"/>
+        <label for="name"> Product Name </label>
+        <input type="text" id="name" name="name" />
 
-    <label for="description"> Descrição do produto </label>
-    <input type="text" id="description" name="description"/>
+        <label for="description"> Product Description </label>
+        <input type="text" id="description" name="description" />
 
-    <label for="value"> Valor do produto </label>
-    <input type="number" id="value" name="value"/>
+        <label for="value"> Product Value </label>
+        <input type="number" id="value" name="value" />
 
-    <button type="submit"> Cadastrar </button>
+        <button type="submit"> Store </button>
 
-</form>
+    </form>
 
-<br>
-<br>
-<a href="{{route('product.index')}}"> Voltar </a>
+    <br>
+    <br>
+    <a href="{{ route('product.index') }}"> Back </a>
 
 </x-template>

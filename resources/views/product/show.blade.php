@@ -8,6 +8,6 @@
 <p> Description: {{$product->description}}</p>
 <p> Value: {{$product->value}}</p>
 
-<a href="{{route('product.index')}}"> Voltar </a>
+<a href="{{route('product.index')}}"> Back </a>
 
 </x-template>

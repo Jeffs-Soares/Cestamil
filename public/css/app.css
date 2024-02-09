@@ -492,10 +492,6 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
-.bg-orange-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(253 186 116 / var(--tw-bg-opacity));
-}
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -505,8 +501,5 @@ video {
 }
 .underline {
   text-decoration-line: underline;
-}
-.opacity-50 {
-  opacity: 0.5;
 }
 

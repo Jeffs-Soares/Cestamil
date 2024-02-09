@@ -7,7 +7,7 @@
     @foreach($regions as $region)
         <li>
 
-            Região:  <a href="{{route('region.show', $region->id)}}">{{$region->name }}</a>
+            Region:  <a href="{{route('region.show', $region->id)}}">{{$region->name }}</a>
 
             <a href="{{route('region.edit', $region->id)}}"> Edit </a>
 
@@ -22,7 +22,7 @@
 
 </ul>
 
-<a href="{{route('region.create')}}"> Cadastrar uma região </a>
+<a href="{{route('region.create')}}"> Store new region </a>
 <br>
 <br>
 <a href="/"> Home </a>

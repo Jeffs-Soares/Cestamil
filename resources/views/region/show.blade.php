@@ -7,6 +7,6 @@
 <p> Region Name: {{$region->name}}</p>
 <p> Seller Name: {{$region->seller}}</p>
 
-<a href="{{route('region.index')}}"> Voltar </a>
+<a href="{{route('region.index')}}"> Back </a>
 
 </x-template>

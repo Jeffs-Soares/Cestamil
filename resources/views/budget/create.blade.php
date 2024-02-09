@@ -51,7 +51,7 @@
     <br>
     <br>
 
-    <button type="submit"> Cadastrar </button>
+    <button type="submit"> Store </button>
 
 </form>
 

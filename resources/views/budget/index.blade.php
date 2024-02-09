@@ -1,7 +1,7 @@
 <x-template>
 
     <h1> Index Budget Page </h1>
-    
+
     <ul>
 
         @foreach($budgets as $budget)
@@ -29,7 +29,7 @@
     <br>
     <br>
 
-<a href="{{route('budget.create')}}"> Cadastrar um orçamento </a>
+<a href="{{route('budget.create')}}"> Create new budget </a>
 <br>
 <br>
 <a href="/"> Home </a>

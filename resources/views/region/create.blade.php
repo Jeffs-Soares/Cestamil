@@ -6,18 +6,18 @@
     @csrf
     @method('post')
 
-    <label for="name"> Nome da região </label>
+    <label for="name"> Region Name </label>
     <input type="text" id="name" name="name"/>
 
-    <label for="seller"> Nome do vendedor </label>
+    <label for="seller"> Seller Name </label>
     <input type="text" id="seller" name="seller"/>
 
-    <button type="submit"> Cadastrar </button>
+    <button type="submit"> Store </button>
 
 </form>
 
 <br>
 <br>
-<a href="{{route('region.index')}}"> Voltar </a>
+<a href="{{route('region.index')}}"> Back </a>
 
 </x-template>

@@ -18,15 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    //TODO: In future, when i use breeze i change this
-    // return view('login');
-    return redirect(route('dashboard'));
+    return view('login');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 
 Route::resource('region', RegionController::class);
 
