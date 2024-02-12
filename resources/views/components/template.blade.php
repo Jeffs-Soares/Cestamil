@@ -10,7 +10,7 @@
     <title>Login Page </title>
 </head>
 
-<body>
+<body class="px-64">
 
     {{ $slot }}
 
