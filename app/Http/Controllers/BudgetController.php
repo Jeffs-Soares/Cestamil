@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Model\Budget;
 use App\Http\Model\Product;
 use App\Http\Model\Region;
-use App\Traits\BudgetTrait;
 use Illuminate\Http\Request;
 
 class BudgetController extends Controller
 {
-    use BudgetTrait;
-
     public function index()
     {
         $budgets = Budget::all();
@@ -34,8 +31,7 @@ class BudgetController extends Controller
 
     public function store(Request $request, Budget $budget)
     {
-        $budgetUpdated = $this->calcTotalValue($request->method(), $request, $budget);
-
+        $budgetUpdated = $budget->showLUL($request->method(), $request,  $budget);
         $budget->fill($budgetUpdated);
         $budget->save();
 
@@ -67,7 +63,7 @@ class BudgetController extends Controller
         if($request->additional == $budget->additional){
 
             $budget->fill($request->all());
-            $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+            $budget->total_value = $budget -> showLUL($request->method(), $request, $budget);
             $budget->remnant = $budget->total_value - $budget->pay;
             $budget->save();
 
@@ -78,7 +74,7 @@ class BudgetController extends Controller
         if($request->additional > $budget->additional  ){
 
             $budget->fill($request->all());
-            $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+            $budget->total_value = $budget -> showLUL($request->method(), $request, $budget);
             $budget->remnant = $budget->total_value - $budget->pay;
             $budget->save();
 
@@ -89,7 +85,7 @@ class BudgetController extends Controller
         if($request->additional < $budget->additional ){
 
             $budget->fill($request->all());
-            $budget->total_value = $this->calcTotalValue('put', $request, $budget);
+            $budget->total_value = $budget -> showLUL($request->method(), $request, $budget);
             $budget->remnant = $budget->total_value - $budget->pay;
 
             if($budget->remnant < 0){
