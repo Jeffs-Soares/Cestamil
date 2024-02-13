@@ -492,21 +492,8 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
-.pointer-events-none {
-  pointer-events: none;
-}
-.absolute {
-  position: absolute;
-}
 .relative {
   position: relative;
-}
-.inset-y-0 {
-  top: 0px;
-  bottom: 0px;
-}
-.start-0 {
-  inset-inline-start: 0px;
 }
 .mx-auto {
   margin-left: auto;
@@ -539,20 +526,17 @@ video {
 .table {
   display: table;
 }
-.h-4 {
-  height: 1rem;
-}
 .w-full {
   width: 100%;
-}
-.w-4 {
-  width: 1rem;
 }
 .max-w-sm {
   max-width: 24rem;
 }
 .items-center {
   align-items: center;
+}
+.justify-center {
+  justify-content: center;
 }
 .gap-4 {
   gap: 1rem;
@@ -629,15 +613,6 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-.ps-10 {
-  padding-inline-start: 2.5rem;
-}
-.ps-3 {
-  padding-inline-start: 0.75rem;
-}
-.ps-3\.5 {
-  padding-inline-start: 0.875rem;
 }
 .text-left {
   text-align: left;
