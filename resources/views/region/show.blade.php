@@ -15,6 +15,10 @@
                     Region Name
                 </th>
 
+                <th scope="col" class="px-6 py-3">
+                    Seller
+                </th>
+
 
             </tr>
             </thead>
@@ -26,6 +30,10 @@
 
                 <td class="px-6 py-4">
                     {{$region->name}}
+                </td>
+
+                <td class="px-6 py-4">
+                    {{$region->seller}}
                 </td>
 
             </tr>
