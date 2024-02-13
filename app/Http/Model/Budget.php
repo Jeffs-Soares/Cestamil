@@ -35,7 +35,7 @@ class Budget extends Model
         return $this->hasOne(Region::class, 'id', 'region');
     }
 
-    public function showLUL(string $method, Request $request, Budget $budget)
+    public function totalValueCalc(string $method, Request $request, Budget $budget)
     {
 
         if ($method === 'POST') {
