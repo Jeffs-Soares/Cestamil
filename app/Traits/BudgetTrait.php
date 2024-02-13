@@ -20,7 +20,7 @@ trait BudgetTrait
     private function calcTotalValue(string $method, Request $request, Budget $budget): array|string
     {
 
-        if ($method === 'post') {
+        if ($method === 'POST') {
             $product = Product::find($request->product);
 
             $budgetRequest = $request->all() + [
