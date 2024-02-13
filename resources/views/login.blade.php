@@ -1,25 +1,16 @@
-<!doctype html>
-<html lang="pt-BR">
+<x-template>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Login Page </title>
-</head>
+    <h1 class="text-center text-4xl py-14"> Home </h1>
 
-<body>
+    <div class="flex justify-center gap-4">
 
-    <a href="{{ route('budget.index') }}">Budgets</a>
-    <br>
-    <br>
-    <a href="{{ route('region.index') }}">Regions</a>
-    <br>
-    <br>
-    <a href="{{ route('product.index') }}">Products</a>
 
-</body>
+        <a href="{{ route('budget.index') }}" class=" inline-block mt-2 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Budgets</a>
 
-</html>
+        <a href="{{ route('region.index') }}" class=" inline-block mt-2 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Regions</a>
+
+        <a href="{{ route('product.index') }}" class=" inline-block mt-2 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Products</a>
+
+    </div>
+
+</x-template>

@@ -1,21 +1,51 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Product</title>
-</head>
-<body>
-<h1> Show Region Page </h1>
 
-<p> id: {{$product->id}}</p>
-<p> Product Name: {{$product->name}}</p>
-<p> Description: {{$product->description}}</p>
-<p> Value: {{$product->value}}</p>
+<x-template>
 
-<a href="{{route('product.index')}}"> Voltar </a>
+    <h1 class="text-center text-4xl py-14"> Products </h1>
 
-</body>
-</html>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Product ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Product Name
+                </th>
+
+                <th scope="col" class="px-6 py-3">
+                    Description
+                </th>
+
+                <th scope="col" class="px-6 py-3">
+                    Value
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                <td class="px-6 py-4">
+                    {{$product->id}}
+                </td>
+
+                <td class="px-6 py-4">
+                    {{$product->name}}
+                </td>
+
+                <td class="px-6 py-4">
+                    {{$product->description}}
+                </td>
+
+                <td class="px-6 py-4">
+                    {{$product->value}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{route('product.index')}}" class=" inline-block mt-2 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Back</a>
+
+</x-template>
