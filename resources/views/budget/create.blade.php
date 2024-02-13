@@ -2,7 +2,6 @@
 
     <h1 class="text-center text-4xl py-14"> Create Budget Page </h1>
 
-
 <form class="max-w-sm mx-auto" action="{{route('budget.store')}}" method="post">
     @csrf
     @method('post')
