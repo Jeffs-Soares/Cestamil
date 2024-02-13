@@ -532,9 +532,6 @@ video {
 .max-w-sm {
   max-width: 24rem;
 }
-.items-center {
-  align-items: center;
-}
 .justify-center {
   justify-content: center;
 }
