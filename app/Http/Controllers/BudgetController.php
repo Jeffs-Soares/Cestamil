@@ -59,44 +59,7 @@ class BudgetController extends Controller
 
     public function update(Request $request, Budget $budget)
     {
-
-        if($request->additional == $budget->additional){
-
-            $budget->fill($request->all());
-            $budget->total_value = $budget -> totalValueCalc($request->method(), $request, $budget);
-            $budget->remnant = $budget->total_value - $budget->pay;
-            $budget->save();
-
-            return redirect(route('budget.index'));
-
-        };
-
-        if($request->additional > $budget->additional  ){
-
-            $budget->fill($request->all());
-            $budget->total_value = $budget -> totalValueCalc($request->method(), $request, $budget);
-            $budget->remnant = $budget->total_value - $budget->pay;
-            $budget->save();
-
-            return redirect(route('budget.index'));
-
-        };
-
-        if($request->additional < $budget->additional ){
-
-            $budget->fill($request->all());
-            $budget->total_value = $budget -> totalValueCalc($request->method(), $request, $budget);
-            $budget->remnant = $budget->total_value - $budget->pay;
-
-            if($budget->remnant < 0){
-
-                return redirect(route('budget.edit', $budget));
-            };
-
-            $budget->save();
-            return redirect(route('budget.index'));
-
-        };
+        $budget->CalcValueOnStore($request, $budget);
 
         return redirect(route('budget.index'));
 
@@ -116,24 +79,26 @@ class BudgetController extends Controller
     function payStore(Request $request, Budget $budget)
     {
 
-        $payRequest = $request->get('pay');
+        $budget->CalcValueOnUpdate( $request, $budget);
 
-        if ($payRequest > $budget->total_value) {
-
-            return redirect(route('payCreate', $budget));
-        } else if ($payRequest > $budget->remnant) {
-
-            return redirect(route('payCreate', $budget));
-        }
-
-
-        if ($budget->pay + $payRequest > $budget->total_value) {
-            return redirect(route('payCreate', $budget));
-        }
-
-        $budget->pay += $payRequest;
-        $budget->remnant = $budget->total_value - $budget->pay;
-        $budget->save();
+//        $payRequest = $request->get('pay');
+//
+//        if ($payRequest > $budget->total_value) {
+//
+//            return redirect(route('payCreate', $budget));
+//        } else if ($payRequest > $budget->remnant) {
+//
+//            return redirect(route('payCreate', $budget));
+//        }
+//
+//
+//        if ($budget->pay + $payRequest > $budget->total_value) {
+//            return redirect(route('payCreate', $budget));
+//        }
+//
+//        $budget->pay += $payRequest;
+//        $budget->remnant = $budget->total_value - $budget->pay;
+//        $budget->save();
 
         return redirect(route('budget.index'));
     }
