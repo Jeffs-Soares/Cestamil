@@ -45,7 +45,6 @@ class BudgetController extends Controller
             ->with('budget', $budget);
     }
 
-
     public function edit(Budget $budget)
     {
         $products = Product::all();
@@ -59,10 +58,8 @@ class BudgetController extends Controller
 
     public function update(Request $request, Budget $budget)
     {
-        $budget->CalcValueOnStore($request, $budget);
-
+        $budget->CalcValueOnUpdate($request, $budget);
         return redirect(route('budget.index'));
-
     }
 
     public function destroy(Budget $budget)
@@ -78,28 +75,7 @@ class BudgetController extends Controller
 
     function payStore(Request $request, Budget $budget)
     {
-
-        $budget->CalcValueOnUpdate( $request, $budget);
-
-//        $payRequest = $request->get('pay');
-//
-//        if ($payRequest > $budget->total_value) {
-//
-//            return redirect(route('payCreate', $budget));
-//        } else if ($payRequest > $budget->remnant) {
-//
-//            return redirect(route('payCreate', $budget));
-//        }
-//
-//
-//        if ($budget->pay + $payRequest > $budget->total_value) {
-//            return redirect(route('payCreate', $budget));
-//        }
-//
-//        $budget->pay += $payRequest;
-//        $budget->remnant = $budget->total_value - $budget->pay;
-//        $budget->save();
-
+        $budget->CalcValueOnPay( $request, $budget);
         return redirect(route('budget.index'));
     }
 }

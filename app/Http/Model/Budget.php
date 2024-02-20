@@ -59,7 +59,7 @@ class Budget extends Model
         return $calcNewValue;
     }
 
-    public function CalcValueOnStore(Request $request, Budget $budget)
+    public function CalcValueOnUpdate(Request $request, Budget $budget)
     {
 
         if($request->additional == $budget->additional){
@@ -98,7 +98,7 @@ class Budget extends Model
 
     }
 
-    public function CalcValueOnUpdate(Request $request, Budget $budget)
+    public function CalcValueOnPay(Request $request, Budget $budget)
     {
 
         $payRequest = $request->get('pay');
@@ -106,11 +106,11 @@ class Budget extends Model
         if ($payRequest > $budget->total_value) {
 
             return redirect(route('payCreate', $budget));
+
         } else if ($payRequest > $budget->remnant) {
 
             return redirect(route('payCreate', $budget));
         }
-
 
         if ($budget->pay + $payRequest > $budget->total_value) {
             return redirect(route('payCreate', $budget));
