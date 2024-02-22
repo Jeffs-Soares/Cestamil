@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Model\Budget;
 use App\Http\Model\Product;
 use Illuminate\Http\Request;
 
@@ -57,6 +58,10 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if (Budget::where('product', $product->id)->exists()) {
+            return redirect(route('product.index'));
+        }
+
         $product->delete();
         return redirect(route('product.index'));
     }

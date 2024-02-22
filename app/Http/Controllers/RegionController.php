@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Model\Budget;
 use App\Http\Model\Region;
 use Illuminate\Http\Request;
 
@@ -57,6 +58,12 @@ class RegionController extends Controller
 
     public function destroy(Region $region)
     {
+        
+        if(Budget::where('region', $region->id)->exists()){
+
+            return redirect(route('region.index'));
+        }
+
         $region->delete();
         return redirect(route('region.index'));
     }
