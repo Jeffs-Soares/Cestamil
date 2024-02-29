@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Middleware\Controllers;
 
 use App\Http\Model\Budget;
 use App\Http\Model\Product;

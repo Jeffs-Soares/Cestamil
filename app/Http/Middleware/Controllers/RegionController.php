@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Middleware\Controllers;
 
 use App\Http\Model\Budget;
 use App\Http\Model\Region;
@@ -58,7 +58,7 @@ class RegionController extends Controller
 
     public function destroy(Region $region)
     {
-        
+
         if(Budget::where('region', $region->id)->exists()){
 
             return redirect(route('region.index'));

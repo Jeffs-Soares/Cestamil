@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\BudgetController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RegionController;
+use App\Http\Middleware\Controllers\BudgetController;
+use App\Http\Middleware\Controllers\ProductController;
+use App\Http\Middleware\Controllers\ProfileController;
+use App\Http\Middleware\Controllers\RegionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/u', function () {
+Route::get('/loginPage', function () {
     return view('welcome');
 });
 
@@ -33,7 +33,8 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/', function () {
-    return view('login');
+    return redirect(route('login'));
+    //return view('home');
 });
 
 Route::resource('region', RegionController::class);
