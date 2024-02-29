@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Middleware\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-use App\Http\Middleware\Controllers\Controller;
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Http\Model\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -31,16 +31,24 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'name' => 'required', 'string', 'max:255',
+            'email' => 'required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class,
+            'password' => 'required', 'confirmed', Rules\Password::defaults(),
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = new User();
+
+        $user->fill($request->all());
+
+        $user->password = Hash::make($request->password);
+
+//        $user = User::create([
+//            'name' => $request->name,
+//            'email' => $request->email,
+//            'password' => Hash::make($request->password),
+//        ]);
+
+        $user->save();
 
         event(new Registered($user));
 
