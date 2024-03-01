@@ -24,15 +24,15 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::resource('region', RegionController::class);
+Route::resource('region', RegionController::class)->middleware('auth');
 
-Route::resource('product', ProductController::class);
+Route::resource('product', ProductController::class)->middleware('auth');
 
-Route::resource('budget', BudgetController::class);
+Route::resource('budget', BudgetController::class)->middleware('auth');
 
-Route::get('/budget/{budget}/pay', [BudgetController::class, 'payCreate'])->name('payCreate');
+Route::get('/budget/{budget}/pay', [BudgetController::class, 'payCreate'])->name('payCreate')->middleware('auth');
 
-Route::put('/budget/{budget}/pay', [BudgetController::class, 'payStore'])->name('payStore');
+Route::put('/budget/{budget}/pay', [BudgetController::class, 'payStore'])->name('payStore')->middleware('auth');
 
 
 require __DIR__.'/auth.php';
