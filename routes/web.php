@@ -7,7 +7,7 @@ use App\Http\Controllers\RegionController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/loginpage', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -22,16 +22,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/', function () {
-    return view('home');
-    //return redirect(route('login'));
-    //return view('home');
-});
-
-
-Route::get('/home', function (){
-   return view('home');
-});
 
 
 Route::resource('region', RegionController::class);
