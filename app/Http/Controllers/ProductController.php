@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Model\Budget;
-use App\Http\Model\Product;
+use App\Models\Budget;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
