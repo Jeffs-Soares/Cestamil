@@ -33,6 +33,7 @@ class ProductController extends Controller
             'value'       => 'required | numeric'
         ]);
 
+
         $product->fill($request->all());
         $product->save();
 
@@ -57,6 +58,12 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $request->validate([
+            'name'        => 'required | min:2 | max:80',
+            'description' => 'required',
+            'value'       => 'required | numeric'
+        ]);
+
         $product->fill($request->all());
         $product->save();
         return redirect(route('product.index'));
