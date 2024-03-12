@@ -31,6 +31,14 @@ class BudgetController extends Controller
 
     public function store(Request $request, Budget $budget)
     {
+
+        $request->validate([
+            'client' => 'required | min:3 | max: 255',
+            'date' => 'required',
+            'additional' => 'required',
+            'quantity' => 'required | numeric'
+        ]);
+
         $budgetUpdated = $budget->totalValueCalc($request->method(), $request,  $budget);
         $budget->fill($budgetUpdated);
         $budget->save();
