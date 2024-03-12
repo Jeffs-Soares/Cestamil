@@ -66,6 +66,13 @@ class BudgetController extends Controller
 
     public function update(Request $request, Budget $budget)
     {
+        $request->validate([
+            'client' => 'required | min:3 | max: 255',
+            'date' => 'required',
+            'additional' => 'required',
+            'quantity' => 'required | numeric'
+        ]);
+        
         $budget->CalcValueOnUpdate($request, $budget);
         return redirect(route('budget.index'));
     }
