@@ -72,7 +72,7 @@ class BudgetController extends Controller
             'additional' => 'required',
             'quantity' => 'required | numeric'
         ]);
-        
+
         $budget->CalcValueOnUpdate($request, $budget);
         return redirect(route('budget.index'));
     }
