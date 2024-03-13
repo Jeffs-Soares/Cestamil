@@ -27,6 +27,12 @@ class RegionController extends Controller
     {
         //$region = Region::create($request->all());
         $region = new Region();
+
+        $request->validate([
+            'name'        => 'required | min:2 | max:80',
+            'seller'      => 'required | max:255',
+        ]);
+
         $region->fill($request->all());
         $region->save();
 
@@ -51,6 +57,11 @@ class RegionController extends Controller
 
     public function update(Request $request, Region $region)
     {
+        $request->validate([
+            'name'        => 'required | min:2 | max:80',
+            'seller'      => 'required | max:255',
+        ]);
+
         $region->fill($request->all());
         $region->save();
         return redirect(route('region.index'));
@@ -58,7 +69,7 @@ class RegionController extends Controller
 
     public function destroy(Region $region)
     {
-        
+
         if(Budget::where('region', $region->id)->exists()){
 
             return redirect(route('region.index'));
