@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Login Page </title>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
 <body class="px-64">

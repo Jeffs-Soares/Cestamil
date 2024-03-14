@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Model\Budget;
-use App\Http\Model\Product;
-use App\Http\Model\Region;
+use App\Models\Budget;
+use App\Models\Product;
+use App\Models\Region;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\Factory;
