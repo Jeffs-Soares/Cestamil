@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Model\Budget;
 use App\Http\Model\Product;
 use App\Http\Model\Region;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\Factory;
+use Illuminate\View\View;
 
 class BudgetController extends Controller
 {
@@ -18,7 +21,7 @@ class BudgetController extends Controller
     }
 
 
-    public function create()
+    public function create() : View
     {
         $products = Product::all();
         $regions = Region::all();
@@ -29,7 +32,7 @@ class BudgetController extends Controller
     }
 
 
-    public function store(Request $request, Budget $budget)
+    public function store(Request $request, Budget $budget) : RedirectResponse
     {
 
         $request->validate([
