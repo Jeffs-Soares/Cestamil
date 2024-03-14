@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class Product extends Model
 {
     use HasFactory;
-    protected $table = 'region';
     public $timestamps = false;
+    protected $table = 'product';
     protected $primaryKey = 'id';
     protected $fillable = [
         'name',
-        'seller'
+        'description',
+        'value'
     ];
 
     public function belongsBudget()
     {
         return $this->belongsTo(Budget::class);
     }
-
 }

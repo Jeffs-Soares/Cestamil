@@ -1,5 +1,7 @@
 <x-template>
 
+
+
     <h1 class="text-center text-4xl py-14"> Home </h1>
 
     <div class="flex justify-center gap-4">
