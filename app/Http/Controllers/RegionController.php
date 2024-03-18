@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegionRequest;
 use App\Models\Budget;
 use App\Models\Region;
-use Illuminate\Http\Request;
 
 class RegionController extends Controller
 {
@@ -23,15 +23,9 @@ class RegionController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(RegionRequest $request)
     {
-        //$region = Region::create($request->all());
         $region = new Region();
-
-        $request->validate([
-            'name'        => 'required | min:2 | max:80',
-            'seller'      => 'required | max:255',
-        ]);
 
         $region->fill($request->all());
         $region->save();
@@ -55,13 +49,8 @@ class RegionController extends Controller
     }
 
 
-    public function update(Request $request, Region $region)
+    public function update(RegionRequest $request, Region $region)
     {
-        $request->validate([
-            'name'        => 'required | min:2 | max:80',
-            'seller'      => 'required | max:255',
-        ]);
-
         $region->fill($request->all());
         $region->save();
         return redirect(route('region.index'));

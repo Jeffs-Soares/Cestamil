@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BudgetRequest;
 use App\Models\Budget;
 use App\Models\Product;
 use App\Models\Region;
@@ -21,7 +22,7 @@ class BudgetController extends Controller
     }
 
 
-    public function create() : View
+    public function create()
     {
         $products = Product::all();
         $regions = Region::all();
@@ -32,16 +33,8 @@ class BudgetController extends Controller
     }
 
 
-    public function store(Request $request, Budget $budget) : RedirectResponse
+    public function store(BudgetRequest $request, Budget $budget)
     {
-
-        $request->validate([
-            'client' => 'required | min:3 | max: 255',
-            'date' => 'required',
-            'additional' => 'required',
-            'quantity' => 'required | numeric'
-        ]);
-
         $budgetUpdated = $budget->totalValueCalc($request->method(), $request,  $budget);
         $budget->fill($budgetUpdated);
         $budget->save();
@@ -67,15 +60,8 @@ class BudgetController extends Controller
             ->with('regions', $regions);
     }
 
-    public function update(Request $request, Budget $budget)
+    public function update(BudgetRequest $request, Budget $budget)
     {
-        $request->validate([
-            'client' => 'required | min:3 | max: 255',
-            'date' => 'required',
-            'additional' => 'required',
-            'quantity' => 'required | numeric'
-        ]);
-
         $budget->CalcValueOnUpdate($request, $budget);
         return redirect(route('budget.index'));
     }
@@ -91,7 +77,7 @@ class BudgetController extends Controller
         return view('budget.pay')->with('budget', $budget);
     }
 
-    function payStore(Request $request, Budget $budget)
+    function payStore(BudgetRequest $request, Budget $budget)
     {
         $budget->CalcValueOnPay( $request, $budget);
         return redirect(route('budget.index'));

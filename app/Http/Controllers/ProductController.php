@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Budget;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -23,17 +23,9 @@ class ProductController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $product = new Product();
-
-        $request->validate([
-            'name'        => 'required | min:2 | max:80',
-            'description' => 'required',
-            'value'       => 'required | numeric'
-        ]);
-
-
         $product->fill($request->all());
         $product->save();
 
@@ -56,14 +48,8 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        $request->validate([
-            'name'        => 'required | min:2 | max:80',
-            'description' => 'required',
-            'value'       => 'required | numeric'
-        ]);
-
         $product->fill($request->all());
         $product->save();
         return redirect(route('product.index'));
