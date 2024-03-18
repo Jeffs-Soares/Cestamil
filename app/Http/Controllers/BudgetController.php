@@ -6,16 +6,14 @@ use App\Http\Requests\BudgetRequest;
 use App\Models\Budget;
 use App\Models\Product;
 use App\Models\Region;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\View\Factory;
-use Illuminate\View\View;
+use App\Services\BudgetService;
+
 
 class BudgetController extends Controller
 {
     public function index()
     {
-        $budgets = Budget::all();
+        $budgets = (new BudgetService())->list();
 
         return view('budget.index')
             ->with('budgets', $budgets);
@@ -35,10 +33,7 @@ class BudgetController extends Controller
 
     public function store(BudgetRequest $request, Budget $budget)
     {
-        $budgetUpdated = $budget->totalValueCalc($request->method(), $request,  $budget);
-        $budget->fill($budgetUpdated);
-        $budget->save();
-
+        (new BudgetService())->save($request, $budget);
         return redirect(route('budget.index'));
     }
 
@@ -62,13 +57,13 @@ class BudgetController extends Controller
 
     public function update(BudgetRequest $request, Budget $budget)
     {
-        $budget->CalcValueOnUpdate($request, $budget);
+        (new BudgetService())->update($request, $budget);
         return redirect(route('budget.index'));
     }
 
     public function destroy(Budget $budget)
     {
-        $budget->delete();
+        (new BudgetService())->delete($budget);
         return redirect(route('budget.index'));
     }
 
@@ -79,7 +74,7 @@ class BudgetController extends Controller
 
     function payStore(BudgetRequest $request, Budget $budget)
     {
-        $budget->CalcValueOnPay( $request, $budget);
+        (new BudgetService())->payStore($request, $budget);
         return redirect(route('budget.index'));
     }
 }
