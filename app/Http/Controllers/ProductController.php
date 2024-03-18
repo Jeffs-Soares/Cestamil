@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Budget;
 use App\Models\Product;
+use App\Services\ProductService;
+
 
 class ProductController extends Controller
 {
 
     public function index()
     {
-        $products = Product::all();
+        $products =   (new ProductService())->list();
         return view('product.index')
             ->with('products', $products);
     }
@@ -23,12 +25,9 @@ class ProductController extends Controller
     }
 
 
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request, Product $product)
     {
-        $product = new Product();
-        $product->fill($request->all());
-        $product->save();
-
+        (new ProductService())->save($request, $product);
         return redirect(route('product.index'));
 
     }
@@ -50,8 +49,7 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product)
     {
-        $product->fill($request->all());
-        $product->save();
+        (new ProductService())->update($request, $product);
         return redirect(route('product.index'));
     }
 

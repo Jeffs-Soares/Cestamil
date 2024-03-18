@@ -46,7 +46,7 @@ class RegionController extends Controller
 
     public function update(RegionRequest $request, Region $region)
     {
-        (new RegionService())->save($request, $region);
+        (new RegionService())->update($request, $region);
 
         return redirect(route('region.index'));
     }
