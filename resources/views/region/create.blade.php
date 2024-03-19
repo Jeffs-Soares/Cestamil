@@ -20,11 +20,17 @@
 
         {{--       Show Validation  --}}
 
+
+
         @if($errors->any())
             <div>
                 <ul>
                     @foreach($errors->all() as $error)
-                        <li> {{ $error }} </li>
+                        <li>
+                            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                {{ $error }}
+                            </div>
+                        </li>
                     @endforeach
                 </ul>
             </div>
