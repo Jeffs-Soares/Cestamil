@@ -13,27 +13,20 @@ class BudgetController extends Controller
 {
     public function index()
     {
-        $budgets = (new BudgetService())->list();
-
         return view('budget.index')
-            ->with('budgets', $budgets);
+            ->with('budgets', (new BudgetService())->list());
     }
-
 
     public function create()
     {
-        $products = Product::all();
-        $regions = Region::all();
-
         return view('budget.create')
-            ->with('products', $products)
-            ->with('regions', $regions);
+            ->with('products', Product::all())
+            ->with('regions', Region::all());
     }
-
 
     public function store(BudgetRequest $request, Budget $budget)
     {
-        (new BudgetService())->save($request, $budget);
+        (new BudgetService())->storeBudget($request, $budget);
         return redirect(route('budget.index'));
     }
 
@@ -46,24 +39,21 @@ class BudgetController extends Controller
 
     public function edit(Budget $budget)
     {
-        $products = Product::all();
-        $regions = Region::all();
-
         return view('budget.edit')
             ->with('budget', $budget)
-            ->with('products', $products)
-            ->with('regions', $regions);
+            ->with('products', Product::all())
+            ->with('regions', Region::all());
     }
 
     public function update(BudgetRequest $request, Budget $budget)
     {
-        (new BudgetService())->update($request, $budget);
+        (new BudgetService())->updateBudget($request, $budget);
         return redirect(route('budget.index'));
     }
 
     public function destroy(Budget $budget)
     {
-        (new BudgetService())->delete($budget);
+        (new BudgetService())->deleteBudget($budget);
         return redirect(route('budget.index'));
     }
 
@@ -74,7 +64,7 @@ class BudgetController extends Controller
 
     function payStore(BudgetRequest $request, Budget $budget)
     {
-        (new BudgetService())->payStore($request, $budget);
+        (new BudgetService())->payStoreBudget($request, $budget);
         return redirect(route('budget.index'));
     }
 }

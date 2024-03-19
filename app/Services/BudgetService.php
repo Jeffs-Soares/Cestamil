@@ -15,26 +15,26 @@ class BudgetService
         return Budget::all();
     }
 
-    public function save(BudgetRequest $request, Budget $budget)
+    public function storeBudget(BudgetRequest $request, Budget $budget)
     {
         $budgetUpdated = $this->totalValueCalc($request->method(), $request,  $budget);
         $budget->fill($budgetUpdated);
         return $budget->save();
     }
 
-    public function update(BudgetRequest $request, Budget $budget)
+    public function updateBudget(BudgetRequest $request, Budget $budget)
     {
         return $this->CalcValueOnUpdate($request, $budget);
     }
 
-    public function delete(Budget $budget)
+    public function deleteBudget(Budget $budget)
     {
         return $budget->delete();
     }
 
-    public function payStore(BudgetRequest $request, Budget $budget)
+    public function payStoreBudget(BudgetRequest $request, Budget $budget)
     {
-        return $this->CalcValueOnPay( $request, $budget);
+        return $this->calcValueOnPay( $request, $budget);
     }
 
 
@@ -115,7 +115,7 @@ class BudgetService
 
 
 
-    public function CalcValueOnPay(Request $request, Budget $budget)
+    public function calcValueOnPay(Request $request, Budget $budget)
     {
 
         $payRequest = $request->get('pay');
