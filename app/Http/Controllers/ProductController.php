@@ -13,7 +13,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products =   (new ProductService())->list();
+        $products =   (new ProductService())->listProduct();
         return view('product.index')
             ->with('products', $products);
     }
@@ -27,7 +27,7 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request, Product $product)
     {
-        (new ProductService())->save($request, $product);
+        (new ProductService())->saveProduct($request, $product);
         return redirect(route('product.index'));
 
     }
@@ -49,7 +49,7 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product)
     {
-        (new ProductService())->update($request, $product);
+        (new ProductService())->updateProduct($request, $product);
         return redirect(route('product.index'));
     }
 
@@ -60,7 +60,7 @@ class ProductController extends Controller
             return redirect(route('product.index'));
         }
 
-        $product->delete();
+        (new ProductService())->destroyProduct($product);
         return redirect(route('product.index'));
     }
 }

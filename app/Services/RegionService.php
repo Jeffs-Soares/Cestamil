@@ -7,24 +7,24 @@ use App\Models\Region;
 class RegionService
 {
 
-    public function list()
+    public function listRegion()
     {
         return Region::all();
     }
 
-    public function save(RegionRequest $request, Region $region)
+    public function saveRegion(RegionRequest $request, Region $region)
     {
         $region->fill($request->all());
         return $region->save();
     }
 
-    public function update(RegionRequest $request, Region $region)
+    public function updateRegion(RegionRequest $request, Region $region)
     {
         $region->fill($request->all());
         return $region->save();
     }
 
-    public function delete(Region $region)
+    public function destroyRegion(Region $region)
     {
         return $region->delete();
     }

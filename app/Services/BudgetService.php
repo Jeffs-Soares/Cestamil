@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class BudgetService
 {
 
-    public function list()
+    public function listBudget()
     {
         return Budget::all();
     }
@@ -27,7 +27,7 @@ class BudgetService
         return $this->CalcValueOnUpdate($request, $budget);
     }
 
-    public function deleteBudget(Budget $budget)
+    public function destroyBudget(Budget $budget)
     {
         return $budget->delete();
     }

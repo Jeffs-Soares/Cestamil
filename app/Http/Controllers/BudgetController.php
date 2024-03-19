@@ -14,7 +14,7 @@ class BudgetController extends Controller
     public function index()
     {
         return view('budget.index')
-            ->with('budgets', (new BudgetService())->list());
+            ->with('budgets', (new BudgetService())->listBudget());
     }
 
     public function create()
@@ -53,7 +53,7 @@ class BudgetController extends Controller
 
     public function destroy(Budget $budget)
     {
-        (new BudgetService())->deleteBudget($budget);
+        (new BudgetService())->destroyBudget($budget);
         return redirect(route('budget.index'));
     }
 

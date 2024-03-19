@@ -12,7 +12,7 @@ class RegionController extends Controller
 
     public function index()
     {
-      $regions = (new RegionService())->list();
+      $regions = (new RegionService())->listRegion();
 
       return view('region.index')
           ->with('regions', $regions);
@@ -26,7 +26,7 @@ class RegionController extends Controller
 
     public function store(RegionRequest $request, Region $region)
     {
-        (new RegionService())->save($request, $region);
+        (new RegionService())->saveRegion($request, $region);
 
         return redirect(route('region.index'));
 
@@ -46,7 +46,7 @@ class RegionController extends Controller
 
     public function update(RegionRequest $request, Region $region)
     {
-        (new RegionService())->update($request, $region);
+        (new RegionService())->updateRegion($request, $region);
 
         return redirect(route('region.index'));
     }
@@ -58,7 +58,7 @@ class RegionController extends Controller
             return redirect(route('region.index'));
         }
 
-        (new RegionService())->delete($region);
+        (new RegionService())->destroyRegion($region);
         return redirect(route('region.index'));
     }
 }

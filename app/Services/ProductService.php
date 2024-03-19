@@ -7,21 +7,26 @@ use App\Http\Requests\ProductRequest;
 class ProductService
 {
 
-    public function list()
+    public function listProduct()
     {
         return Product::all();
     }
 
-    public function save(ProductRequest $request, Product $product)
+    public function saveProduct(ProductRequest $request, Product $product)
     {
         $product->fill($request->all());
         return $product->save();
     }
 
-    public function update(ProductRequest $request, Product $product)
+    public function updateProduct(ProductRequest $request, Product $product)
     {
         $product->fill($request->all());
         return $product->save();
+    }
+
+    public function destroyProduct(Product $product)
+    {
+        return $product->delete();
     }
 
 }
