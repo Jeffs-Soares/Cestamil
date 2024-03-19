@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\BudgetController;
-use App\Http\Controllers\RegionController;
-use App\Http\Controllers\ProductController;
-use App\Http\Model\Budget;
+use App\Http\Controllers\{BudgetController, ProductController, RegionController};
 use Illuminate\Support\Facades\Route;
 
 /*

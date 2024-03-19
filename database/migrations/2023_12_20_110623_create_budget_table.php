@@ -26,7 +26,6 @@ class CreateBudgetTable extends Migration
             $table->float('pay')->nullable(false);
             $table->float('remnant')->nullable(false);
 
-
             $table->foreign('product')->references('id')
                 ->on('product')
                 ->onDelete('cascade');

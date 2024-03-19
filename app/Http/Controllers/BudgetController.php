@@ -2,53 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Budget;
-use App\Models\Product;
-use App\Models\Region;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\View\Factory;
-use Illuminate\View\View;
+use App\Http\Requests\BudgetRequest;
+use App\Models\{Budget, Product, Region};
+use App\Services\BudgetService;
 
 class BudgetController extends Controller
 {
     public function index()
     {
-        $budgets = Budget::all();
-
         return view('budget.index')
-            ->with('budgets', $budgets);
+            ->with('budgets', (new BudgetService())->listBudget());
     }
 
-
-    public function create() : View
+    public function create()
     {
-        $products = Product::all();
-        $regions = Region::all();
-
         return view('budget.create')
-            ->with('products', $products)
-            ->with('regions', $regions);
+            ->with('products', Product::all())
+            ->with('regions', Region::all());
     }
 
-
-    public function store(Request $request, Budget $budget) : RedirectResponse
+    public function store(BudgetRequest $request, Budget $budget)
     {
-
-        $request->validate([
-            'client' => 'required | min:3 | max: 255',
-            'date' => 'required',
-            'additional' => 'required',
-            'quantity' => 'required | numeric'
-        ]);
-
-        $budgetUpdated = $budget->totalValueCalc($request->method(), $request,  $budget);
-        $budget->fill($budgetUpdated);
-        $budget->save();
+        (new BudgetService())->storeBudget($request, $budget);
 
         return redirect(route('budget.index'));
     }
-
 
     public function show(Budget $budget)
     {
@@ -58,42 +36,35 @@ class BudgetController extends Controller
 
     public function edit(Budget $budget)
     {
-        $products = Product::all();
-        $regions = Region::all();
-
         return view('budget.edit')
             ->with('budget', $budget)
-            ->with('products', $products)
-            ->with('regions', $regions);
+            ->with('products', Product::all())
+            ->with('regions', Region::all());
     }
 
-    public function update(Request $request, Budget $budget)
+    public function update(BudgetRequest $request, Budget $budget)
     {
-        $request->validate([
-            'client' => 'required | min:3 | max: 255',
-            'date' => 'required',
-            'additional' => 'required',
-            'quantity' => 'required | numeric'
-        ]);
+        (new BudgetService())->updateBudget($request, $budget);
 
-        $budget->CalcValueOnUpdate($request, $budget);
         return redirect(route('budget.index'));
     }
 
     public function destroy(Budget $budget)
     {
-        $budget->delete();
+        (new BudgetService())->destroyBudget($budget);
+
         return redirect(route('budget.index'));
     }
 
-    function payCreate(Budget $budget)
+    public function payCreate(Budget $budget)
     {
         return view('budget.pay')->with('budget', $budget);
     }
 
-    function payStore(Request $request, Budget $budget)
+    public function payStore(BudgetRequest $request, Budget $budget)
     {
-        $budget->CalcValueOnPay( $request, $budget);
+        (new BudgetService())->payStoreBudget($request, $budget);
+
         return redirect(route('budget.index'));
     }
 }

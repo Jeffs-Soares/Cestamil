@@ -2,44 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Budget;
-use App\Models\Region;
-use Illuminate\Http\Request;
+use App\Http\Requests\RegionRequest;
+use App\Models\{Budget, Region};
+use App\Services\RegionService;
 
 class RegionController extends Controller
 {
-
     public function index()
     {
-      $regions = Region::all();
-      return view('region.index')
-          ->with('regions', $regions);
-    }
+        $regions = (new RegionService())->listRegion();
 
+        return view('region.index')
+            ->with('regions', $regions);
+    }
 
     public function create()
     {
         return view('region.create');
     }
 
-
-    public function store(Request $request)
+    public function store(RegionRequest $request, Region $region)
     {
-        //$region = Region::create($request->all());
-        $region = new Region();
-
-        $request->validate([
-            'name'        => 'required | min:2 | max:80',
-            'seller'      => 'required | max:255',
-        ]);
-
-        $region->fill($request->all());
-        $region->save();
+        (new RegionService())->saveRegion($request, $region);
 
         return redirect(route('region.index'));
 
     }
-
 
     public function show(Region $region)
     {
@@ -47,35 +35,28 @@ class RegionController extends Controller
             ->with('region', $region);
     }
 
-
     public function edit(Region $region)
     {
         return view('region.edit')
             ->with('region', $region);
     }
 
-
-    public function update(Request $request, Region $region)
+    public function update(RegionRequest $request, Region $region)
     {
-        $request->validate([
-            'name'        => 'required | min:2 | max:80',
-            'seller'      => 'required | max:255',
-        ]);
+        (new RegionService())->updateRegion($request, $region);
 
-        $region->fill($request->all());
-        $region->save();
         return redirect(route('region.index'));
     }
 
     public function destroy(Region $region)
     {
-
-        if(Budget::where('region', $region->id)->exists()){
+        if(Budget::where('region', $region->id)->exists()) {
 
             return redirect(route('region.index'));
         }
 
-        $region->delete();
+        (new RegionService())->destroyRegion($region);
+
         return redirect(route('region.index'));
     }
 }
