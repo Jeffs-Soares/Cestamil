@@ -33,7 +33,6 @@ class BudgetService
 
     public function payStore(BudgetRequest $request, Budget $budget)
     {
-        dd('Pay Works!');
         return $budget->CalcValueOnPay( $request, $budget);
     }
 
