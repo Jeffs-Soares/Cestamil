@@ -29,8 +29,8 @@ class BudgetRequest extends FormRequest
         return [
             'client' => 'required | min:3 | max: 255',
             'date' => 'required',
-            'additional' => 'required',
-            'quantity' => 'required | numeric'
+            'additional' => 'required | min:0',
+            'quantity' => 'required | numeric | min:0'
         ];
     }
 }
