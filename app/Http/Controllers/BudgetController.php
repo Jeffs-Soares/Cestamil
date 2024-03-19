@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BudgetRequest;
-use App\Models\Budget;
-use App\Models\Product;
-use App\Models\Region;
+use App\Models\{Budget, Product, Region};
 use App\Services\BudgetService;
-
 
 class BudgetController extends Controller
 {
@@ -27,9 +24,9 @@ class BudgetController extends Controller
     public function store(BudgetRequest $request, Budget $budget)
     {
         (new BudgetService())->storeBudget($request, $budget);
+
         return redirect(route('budget.index'));
     }
-
 
     public function show(Budget $budget)
     {
@@ -48,23 +45,26 @@ class BudgetController extends Controller
     public function update(BudgetRequest $request, Budget $budget)
     {
         (new BudgetService())->updateBudget($request, $budget);
+
         return redirect(route('budget.index'));
     }
 
     public function destroy(Budget $budget)
     {
         (new BudgetService())->destroyBudget($budget);
+
         return redirect(route('budget.index'));
     }
 
-    function payCreate(Budget $budget)
+    public function payCreate(Budget $budget)
     {
         return view('budget.pay')->with('budget', $budget);
     }
 
-    function payStore(BudgetRequest $request, Budget $budget)
+    public function payStore(BudgetRequest $request, Budget $budget)
     {
         (new BudgetService())->payStoreBudget($request, $budget);
+
         return redirect(route('budget.index'));
     }
 }

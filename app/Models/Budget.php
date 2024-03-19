@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class Budget extends Model
 {
     use HasFactory;
+
     protected $table = 'budget';
+
     protected $primaryKey = 'id';
-    public    $timestamps = false;
+
+    public $timestamps = false;
+
     protected $fillable = [
         'client',
         'date',
@@ -22,7 +25,7 @@ class Budget extends Model
         'quantity',
         'total_value',
         'pay',
-        'remnant'
+        'remnant',
     ];
 
     public function hasProduct()

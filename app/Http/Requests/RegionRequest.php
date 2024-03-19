@@ -22,8 +22,8 @@ class RegionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => 'required | min:2 | max:80',
-            'seller'      => 'required | max:255',
+            'name'   => 'required | min:2 | max:80',
+            'seller' => 'required | max:255',
         ];
     }
 }

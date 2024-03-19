@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Services;
+
 use App\Http\Requests\RegionRequest;
 use App\Models\Region;
 
 class RegionService
 {
-
     public function listRegion()
     {
         return Region::all();
@@ -15,12 +15,14 @@ class RegionService
     public function saveRegion(RegionRequest $request, Region $region)
     {
         $region->fill($request->all());
+
         return $region->save();
     }
 
     public function updateRegion(RegionRequest $request, Region $region)
     {
         $region->fill($request->all());
+
         return $region->save();
     }
 

@@ -21,16 +21,17 @@ class BudgetRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->method() == 'PUT' && str_contains($this->path(), 'budget') && str_contains($this->path(), 'pay')){
+        if ($this->method() == 'PUT' && str_contains($this->path(), 'budget') && str_contains($this->path(), 'pay')) {
             return [
                 'pay' => 'required',
             ];
         }
+
         return [
-            'client' => 'required | min:3 | max: 255',
-            'date' => 'required',
+            'client'     => 'required | min:3 | max: 255',
+            'date'       => 'required',
             'additional' => 'required | min:0',
-            'quantity' => 'required | numeric | min:0'
+            'quantity'   => 'required | numeric | min:0',
         ];
     }
 }

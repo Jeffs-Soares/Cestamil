@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Region extends Model
 {
     use HasFactory;
+
     protected $table = 'region';
+
     public $timestamps = false;
+
     protected $primaryKey = 'id';
+
     protected $fillable = [
         'name',
-        'seller'
+        'seller',
     ];
 
     public function belongsBudget()

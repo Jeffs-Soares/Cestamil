@@ -3,13 +3,11 @@
 namespace App\Services;
 
 use App\Http\Requests\BudgetRequest;
-use App\Models\Budget;
-use App\Models\Product;
+use App\Models\{Budget, Product};
 use Illuminate\Http\Request;
 
 class BudgetService
 {
-
     public function listBudget()
     {
         return Budget::all();
@@ -17,8 +15,9 @@ class BudgetService
 
     public function storeBudget(BudgetRequest $request, Budget $budget)
     {
-        $budgetUpdated = $this->totalValueCalc($request->method(), $request,  $budget);
+        $budgetUpdated = $this->totalValueCalc($request->method(), $request, $budget);
         $budget->fill($budgetUpdated);
+
         return $budget->save();
     }
 
@@ -34,9 +33,8 @@ class BudgetService
 
     public function payStoreBudget(BudgetRequest $request, Budget $budget)
     {
-        return $this->calcValueOnPay( $request, $budget);
+        return $this->calcValueOnPay($request, $budget);
     }
-
 
     /*
      *
@@ -46,7 +44,6 @@ class BudgetService
      *
      * */
 
-
     public function totalValueCalc(string $method, Request $request, Budget $budget)
     {
 
@@ -54,10 +51,10 @@ class BudgetService
             $product = Product::find($request->product);
 
             $budgetRequest = $request->all() + [
-                    'total_value' => ($product->value * $request->quantity) + $request->additional,
-                    'pay' => 0,
-                    'remnant' => ($product->value * $request->quantity) + $request->additional
-                ];
+                'total_value' => ($product->value * $request->quantity) + $request->additional,
+                'pay'         => 0,
+                'remnant'     => ($product->value * $request->quantity) + $request->additional,
+            ];
 
             $budget = $budgetRequest;
 
@@ -71,27 +68,25 @@ class BudgetService
         return $calcNewValue;
     }
 
-
-
     public function CalcValueOnUpdate(Request $request, Budget $budget)
     {
 
-        if($request->additional == $budget->additional){
+        if($request->additional == $budget->additional) {
 
             $budget->fill($request->all());
             $budget->total_value = $this-> totalValueCalc($request->method(), $request, $budget);
-            $budget->remnant = $budget->total_value - $budget->pay;
+            $budget->remnant     = $budget->total_value - $budget->pay;
             $budget->save();
 
             return redirect(route('budget.index'));
 
         };
 
-        if($request->additional > $budget->additional  ){
+        if($request->additional > $budget->additional) {
 
             $budget->fill($request->all());
             $budget->total_value = $budget -> totalValueCalc($request->method(), $request, $budget);
-            $budget->remnant = $budget->total_value - $budget->pay;
+            $budget->remnant     = $budget->total_value - $budget->pay;
             $budget->save();
 
             return redirect(route('budget.index'));
@@ -100,20 +95,18 @@ class BudgetService
 
         $budget->fill($request->all());
         $budget->total_value = $budget -> totalValueCalc($request->method(), $request, $budget);
-        $budget->remnant = $budget->total_value - $budget->pay;
+        $budget->remnant     = $budget->total_value - $budget->pay;
 
-        if($budget->remnant < 0){
+        if($budget->remnant < 0) {
 
             return redirect(route('budget.edit', $budget));
         };
 
         $budget->save();
+
         return redirect(route('budget.index'));
 
     }
-
-
-
 
     public function calcValueOnPay(Request $request, Budget $budget)
     {
@@ -139,6 +132,5 @@ class BudgetService
         return $budget->save();
 
     }
-
 
 }

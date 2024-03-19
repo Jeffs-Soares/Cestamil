@@ -3,26 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegionRequest;
-use App\Models\Budget;
-use App\Models\Region;
+use App\Models\{Budget, Region};
 use App\Services\RegionService;
 
 class RegionController extends Controller
 {
-
     public function index()
     {
-      $regions = (new RegionService())->listRegion();
+        $regions = (new RegionService())->listRegion();
 
-      return view('region.index')
-          ->with('regions', $regions);
+        return view('region.index')
+            ->with('regions', $regions);
     }
 
     public function create()
     {
         return view('region.create');
     }
-
 
     public function store(RegionRequest $request, Region $region)
     {
@@ -53,12 +50,13 @@ class RegionController extends Controller
 
     public function destroy(Region $region)
     {
-        if(Budget::where('region', $region->id)->exists()){
+        if(Budget::where('region', $region->id)->exists()) {
 
             return redirect(route('region.index'));
         }
 
         (new RegionService())->destroyRegion($region);
+
         return redirect(route('region.index'));
     }
 }

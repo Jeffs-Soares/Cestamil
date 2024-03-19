@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-
 class RegionRepository
 {
-
 }
