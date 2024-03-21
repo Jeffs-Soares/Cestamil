@@ -20,17 +20,12 @@
         }
     </script>
 </head>
-
-<body class="px-64">
+<body>
 
 <main>
-
     <x-dash.home>
         {{ $slot }}
     </x-dash.home>
-
-
-
 </main>
 
 </body>
