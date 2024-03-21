@@ -1,4 +1,4 @@
-<x-template>
+<x-app.template>
     <h1 class="text-center text-4xl py-14"> Pay </h1>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -140,4 +140,4 @@
 
 </form>
 
-</x-template>
+</x-app.template>

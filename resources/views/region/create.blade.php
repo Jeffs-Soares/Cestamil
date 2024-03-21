@@ -1,4 +1,4 @@
-<x-template>
+<x-app.template>
 
 <h1 class="text-center text-4xl py-14"> Create Region Page </h1>
 
@@ -43,4 +43,4 @@
     </form>
 
 
-</x-template>
+</x-app.template>
