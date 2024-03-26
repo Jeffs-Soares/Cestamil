@@ -1,6 +1,6 @@
 <x-app.template>
 
-<h1 class="text-center text-4xl py-14"> Index Region Page </h1>
+<h1 class="text-center text-4xl py-14"> Region </h1>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -1,7 +1,7 @@
 
 <x-app.template>
 
-<h1 class="text-center text-4xl py-14"> Show Region Page </h1>
+<h1 class="text-center text-4xl py-14"> Show Region </h1>
 
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

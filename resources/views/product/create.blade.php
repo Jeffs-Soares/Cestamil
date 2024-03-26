@@ -1,6 +1,6 @@
 <x-app.template>
 
-    <h1 class="text-center text-4xl py-14"> Products </h1>
+    <h1 class="text-center text-4xl py-14"> Create Product </h1>
 
     <form class="max-w-sm mx-auto" action="{{ route('product.store') }}" method="post">
         @csrf

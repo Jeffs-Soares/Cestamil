@@ -1,6 +1,6 @@
 <x-app.template>
 
-<h1 class="text-center text-4xl py-14"> Edit Region Page </h1>
+<h1 class="text-center text-4xl py-14"> Edit Region </h1>
 
 <form action="{{route('region.update', $region->id)}}" method="post">
     @csrf

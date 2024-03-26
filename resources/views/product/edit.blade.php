@@ -1,6 +1,6 @@
 <x-app.template>
 
-    <h1 class="text-center text-4xl py-14"> Products </h1>
+    <h1 class="text-center text-4xl py-14"> Edit Product </h1>
 
     <form action="{{ route('product.update', $product->id) }}" method="post">
         @csrf
