@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\{BudgetController, ProductController, RegionController};
+use App\Http\Controllers\{BudgetController, DashboardController, ProductController, RegionController};
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('region', RegionController::class);
 

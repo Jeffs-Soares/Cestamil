@@ -133,4 +133,18 @@ class BudgetService
 
     }
 
+    public function returnCountBudgetPaidOut(): int
+    {
+
+        $budgets = Budget::all();
+
+        $count = $budgets->filter(function ($item){
+            return $item->pay == $item-> total_value;
+        });
+
+        return $count->count();
+
+    }
+
+
 }
