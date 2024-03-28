@@ -35,7 +35,7 @@
             <div class="p-2 px-4 h-[200px] w-[200px] bg-gray-200 rounded-lg dark:bg-gray-800 flex flex-col gap-6 relative">
                 <h2 class="text-gray-50 text-center"> Último orçamento feito </h2>
 
-                <p class="text-center text-gray-50 text-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "> {{ $lastDate }} </p>
+                <p class="text-center text-gray-50 text-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "> {{  $lastDate  }} </p>
 
             </div>
         </a>

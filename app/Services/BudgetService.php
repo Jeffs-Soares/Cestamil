@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\BudgetRequest;
 use App\Models\{Budget, Product};
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BudgetService
@@ -174,8 +175,7 @@ class BudgetService
 
     public function lastBudgetDate()
     {
-        return Budget::all()->sortByDesc('date')->first();
+        return Carbon::parse(Budget::all()->sortByDesc('date')->first()->getAttribute('date'))->format('d-m-Y');
     }
-
-
+    
 }
