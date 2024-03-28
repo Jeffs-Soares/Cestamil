@@ -143,6 +143,20 @@ class BudgetService
         return $count->count();
     }
 
+
+    public function returnCountBudgetNotPaidOut(): int
+    {
+        $budgets = Budget::all();
+
+        $count = $budgets->filter(function ($item) {
+            return $item->remnant == $item-> total_value;
+        });
+
+        return $count->count();
+    }
+
+
+
     public function returnCountBudgetPartiallyPaidOut(): int
     {
         $budgets = Budget::all();

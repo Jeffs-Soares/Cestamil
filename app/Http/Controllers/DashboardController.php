@@ -10,11 +10,13 @@ class DashboardController extends Controller
     {
         $totallyPaid   = (new BudgetService())->returnCountBudgetPaidOut();
         $partiallyPaid = (new BudgetService())->returnCountBudgetPartiallyPaidOut();
+        $notTotallyPaid   = (new BudgetService())->returnCountBudgetNotPaidOut();
 
         return view('home')
-            ->with(['totallyPaid' => $totallyPaid])
-            ->with(['partiallyPaid' => $partiallyPaid]);
+            ->with(['totallyPaid'    => $totallyPaid])
+            ->with(['partiallyPaid'  => $partiallyPaid])
+            ->with(['notTotallyPaid' => $notTotallyPaid]);
     }
-    
+
 
 }
