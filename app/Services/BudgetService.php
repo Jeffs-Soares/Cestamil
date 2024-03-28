@@ -171,4 +171,11 @@ class BudgetService
 
         return $count->count();
     }
+
+    public function lastBudgetDate()
+    {
+        return Budget::all()->sortByDesc('date')->first();
+    }
+
+
 }
