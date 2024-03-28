@@ -15,5 +15,6 @@ class DashboardController extends Controller
             ->with(['totallyPaid' => $totallyPaid])
             ->with(['partiallyPaid' => $partiallyPaid]);
     }
+    
 
 }
